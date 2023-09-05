@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+        a:link {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: blue;
+            text-decoration: underline;
+        }
+
+        #player {
+            width: 250px;
+        }
+
+        ​
+    </style>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>ZIOS Demo</title>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+            crossorigin="anonymous"></script>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet">
+    <!-- Fonts CSS-->
+    <link rel="stylesheet" href="css/heading.css">
+    <link rel="stylesheet" href="css/body.css">
+    <!-- Bootstrap slider CSS -->
+    <!-- <link rel="stylesheet" href="css/bootstrap-slider.css"> -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css"
+          integrity="sha512-3q8fi8M0VS+X/3n64Ndpp6Bit7oXSiyCnzmlx6IDBLGlY5euFySyJ46RUlqIVs0DPCGOypqP8IRk/EyPvU28mQ=="
+          crossorigin="anonymous"/>
+    <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body id="page-top">
+<nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
+    <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top">Audio demos</a>
+        <button class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded" type="button"
+                data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mx-0 mx-lg-1" style="background-color: #117a8b"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                                                    href="#abstract">ABSTRACT</a></li>
+                <li class="nav-item mx-0 mx-lg-1" style="background-color: #117a8b"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                                                    href="#zeroshot_tts">Zero-shot Text-to-speech</a></li>
+                <li class="nav-item mx-0 mx-lg-1" style="background-color: #117a8b"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                                                    href="#zeroshot_vc">Zero-shot Voice conversion</a></li>
+                <li class="nav-item mx-0 mx-lg-1" style="background-color: #117a8b"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                                                    href="#pitch_control">Pitch control</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<header class="masthead bg-white text-left"> <!-- text-black 사용 가능 -->
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Heading-->
+        <h1 align="center" class="masthead-heading mb-0">ZIOS: End-to-end unified model for zero-shot speech generation with pitch control</h1>
+        <!-- Masthead Subheading-->
+        <p class="pre-wrap masthead-subheading font-weight-light mb-0 font-italic">Yoon-Cheol Ju, Il-Hwan Kim, Jihwan Park, Hyung Yong Kim, Hong-Sun Yang, Shukjae Choi, Shinji Watanabe</p>
+    </div>
+</header>
+
+<!-- Abstraction -->
+<section class="page-section portfolio" id="abstract">
+    <div class="container">
+        <!-- Portfolio Section Heading-->
+        <div class="text-center">
+            <h2 class="page-section-heading text-secondary mb-0 d-inline-block">ABSTRACT</h2>
+        </div>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom"></div>
+        </div>
+        <!-- Portfolio Grid Items-->
+        <div class="row justify-content-center">
+            <div class="col-lg-12 ml-auto">
+                <p class="pre-wrap lead">Recent studies show that deep neural networks are capable of zero-shot speech generation in which the model synthesizes the speech using the speaker identity extracted from the given audio. However, since the additional functionalities of prior research such as prosody control have not been fully integrated to zero-shot speech generation, it shortens the practicality of the model. Moreover, it has not been extensively researched to disentangle the speaker identity into the number of basis vectors that are controllable to either generate or modify the speaker identity. We propose ZIOS, a zero-shot speech generation model that enables the control of the prosody elements of the generated speech such as pitch. Moreover, the proposed speaker quantization module establishes the representational capability of the speaker vector space by utilizing a fixed number of basis vectors, which facilitates the random generation or modification of the speaker identity. In total, the model is able to perform four applications, i.e., zero-shot text-to-speech and voice conversion, random speaker generation, and prosody control, under an end-to-end unified framework with single-step joint training. The experiment results show that it outperforms the other state-of-the-art models with high speech naturalness and speaker similarity, and the pitch element is controllable with the model in zero-shot speech generation. Furthermore, we ensure that the speaker identities of the generated speeches using random speaker generation do not overlap with those of the training sets.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Zero-shot Text-to-speech -->
+<section class="page-section bg-info text-white mb-0" id="zeroshot_tts">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="page-section-heading d-inline-block">Zero-shot Text-to-speech</h2>
+        </div>
+
+        <div class="divider-custom divider-light">
+            <div class="divider-custom"></div>
+        </div>
+
+        <div class="row justify-content-center">
+
+            <!-- About Section Content-->
+            <div class="row">
+                <div class="col-lg-12 ml-auto">
+                    <div class="text-left">
+                        <h3>Audio Samples from LibriTTS test speakers</h3>
+                    </div>  
+
+                    <table class="table table-responsive align-content-center"
+                           style="background-color: whitesmoke; border-radius: 20px">
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <h4>Text</h4>
+                                </td>
+                                <td class="text">
+                                    There was no separation even for the women under sentence of death, who lived in a common and perpetually crowded ward.
+                                </td>
+                                <td class="text">
+                                    Persons convicted of publishing libels were still immured in the same rooms with transports and felons.
+                                </td>
+                                <td class="text">
+                                    The latter's salary, with fees, the rent of the tap and of the chandler's shop, amounted to about six hundred pounds a year.
+                                </td>
+                                <td class="text">
+                                    Fifteen thousand of these were issued in Middlesex alone, which at that time was reckoned as only a fifteenth of Great Britain.
+                                </td>
+                                <td class="text">
+                                    Trustworthy evidence is forthcoming to the effect that these high figures were constantly maintained for many months at a time.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <h4>Speaker audio</h4>
+                                </td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/gt/707.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/gt/603.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/gt/454.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/gt/305.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/gt/202.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">Speaker</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">5639</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">8230</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">2300</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">7176</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">3570</td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">YourTTS</td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/yourtts/707.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/yourtts/603.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/yourtts/454.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/yourtts/305.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/yourtts/202.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">SpeechT5</td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/speecht5/707.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/speecht5/603.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/speecht5/454.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/speecht5/305.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/speecht5/202.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">ZIOS</td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/zios/707.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/zios/603.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/zios/454.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/zios/305.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/tts/zios/202.wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="text-left">
+                        <h3>Audio Samples from VCTK speakers</h3>
+                    </div>  
+
+                    <table class="table table-responsive align-content-center"
+                           style="background-color: whitesmoke; border-radius: 20px">
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <h4>Text</h4>
+                                </td>
+                                <td class="text">
+                                    produced the block books, which were the immediate predecessors of the true printed book.
+                                </td>
+                                <td class="text">
+                                    they must be considered to have ended the age of fine printing in Italy.
+                                </td>
+                                <td class="text">
+                                    oddity rather than rational beauty and meaning being apparently the thing sought for both in the letters and the illustrations.
+                                </td>
+                                <td class="text">
+                                    it is never used except for very expensive books, although it would not materially increase the cost in all but the very cheapest.
+                                </td>
+                                <td class="text">
+                                    Here were also lodged the gatesmen, the prisoners who had charge of the inner gates, and who were entrusted with the duty of escorting visitors from the gates
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <h4>Speaker audio</h4>
+                                </td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/gt/3.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/gt/52.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/gt/105.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/gt/157.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/gt/253.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">Speaker</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">p250</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">p238</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">p232</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">p243</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">p229</td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">YourTTS</td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/yourtts/3.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/yourtts/52.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/yourtts/105.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/yourtts/157.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/yourtts/253.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">SpeechT5</td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/speecht5/3.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/speecht5/52.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/speecht5/105.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/speecht5/157.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/speecht5/253.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">ZIOS</td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/zios/3.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/zios/52.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/zios/105.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/zios/157.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/tts/zios/253.wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+               </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Zero-shot Voice conversion -->
+<section class="page-section bg-info text-white mb-0" id="zeroshot_vc">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="page-section-heading d-inline-block">Zero-shot Voice conversion</h2>
+        </div>
+
+        <div class="divider-custom divider-light">
+            <div class="divider-custom"></div>
+        </div>
+
+        <div class="row justify-content-center">
+
+            <!-- About Section Content-->
+            <div class="row">
+                <div class="col-lg-12 ml-auto">
+                    <div class="text-left">
+                        <h3>Audio Samples from LibriTTS test speakers</h3>
+                    </div>  
+
+                    <table class="table table-responsive align-content-center"
+                           style="background-color: whitesmoke; border-radius: 20px">
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <h4>Context audio</h4>
+                                </td>
+                                <td><audio controls="" preload="none"><source src="wavs/ljspeech/context_groundtruth/700.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/ljspeech/context_groundtruth/560.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/ljspeech/context_groundtruth/404.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/ljspeech/context_groundtruth/105.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/ljspeech/context_groundtruth/256.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="text">The female felons' wards I shall describe at length in the next chapter,</td>
+                                <td class="text">which would accommodate the inmates of Newgate and of the three compters, Ludgate,</td>
+                                <td class="text">In consequence of these disclosures, both Bambridge and Huggin, his predecessor in the office, were committed to Newgate,</td>
+                                <td class="text">oddity rather than rational beauty and meaning being apparently the thing sought for both in the letters and the illustrations.</td>
+                                <td class="text">It was large and comparatively commodious, being maintained on a better footing than any other part of the prison.</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <h4>Speaker audio</h4>
+                                </td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/gt/700.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/gt/560.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/gt/404.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/gt/105.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/gt/256.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">Speaker</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">5639</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">7021</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">7127</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">5683</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">8555</td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">YourTTS</td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/yourtts/700.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/yourtts/560.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/yourtts/404.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/yourtts/105.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/yourtts/256.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">SpeechT5</td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/speecht5/700.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/speecht5/560.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/speecht5/404.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/speecht5/105.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/speecht5/256.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">ZIOS</td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/zios/700.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/zios/560.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/zios/404.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/zios/105.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/libritts/vc/zios/256.wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="text-left">
+                        <h3>Audio Samples from VCTK speakers</h3>
+                    </div>  
+
+                    <table class="table table-responsive align-content-center"
+                           style="background-color: whitesmoke; border-radius: 20px">
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <h4>Context audio</h4>
+                                </td>
+                                <td><audio controls="" preload="none"><source src="wavs/ljspeech/context_groundtruth/2.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/ljspeech/context_groundtruth/52.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/ljspeech/context_groundtruth/105.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/ljspeech/context_groundtruth/355.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/ljspeech/context_groundtruth/602.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="text">For although the Chinese took impressions from wood blocks engraved in relief for centuries before the woodcutters of the Netherlands, by a similar process</td>
+                                <td class="text">they must be considered to have ended the age of fine printing in Italy.</td>
+                                <td class="text">oddity rather than rational beauty and meaning being apparently the thing sought for both in the letters and the illustrations.</td>
+                                <td class="text">The boy declared he saw no one, and accordingly passed through without paying the toll of a penny.</td>
+                                <td class="text">two committed by the Bankruptcy Commissioner, one for perjury, and two transports.</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <h4>Speaker audio</h4>
+                                </td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/gt/2.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/gt/52.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/gt/105.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/gt/355.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/gt/602.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">Speaker</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">p250</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">p238</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">p232</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">p233</td>
+                                <td class="text" style="text-align: center; vertical-align: middle;">p237</td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">YourTTS</td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/yourtts/2.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/yourtts/52.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/yourtts/105.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/yourtts/355.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/yourtts/602.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">SpeechT5</td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/speecht5/2.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/speecht5/52.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/speecht5/105.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/speecht5/355.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/speecht5/602.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="first-col" style="text-align: center; vertical-align: middle;">ZIOS</td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/zios/2.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/zios/52.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/zios/105.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/zios/355.wav"></audio></td>
+                                <td><audio controls="" preload="none"><source src="wavs/vctk/vc/zios/602.wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    
+
+               </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pitch control -->
+<section class="page-section bg-info text-white mb-0" id="pitch_control">
+
+    <div class="container">
+        <div class="text-center">
+            <h2 class="page-section-heading d-inline-block">Pitch control</h2>
+        </div>
+
+        <div class="divider-custom divider-light">
+            <div class="divider-custom"></div>
+        </div>
+
+        <div class="row justify-content-center">
+
+            <!-- About Section Content-->
+            <div class="row">
+                <div class="col-lg-12 ml-auto">
+                    <div class="text-left">
+                        <h3>Audio Samples with pitch control on zero-shot text-to-speech</h3>
+                    </div>  
+                    
+                    <table class="table table-responsive align-content-center"
+                           style="background-color: whitesmoke; border-radius: 20px;">
+                           <tbody>
+                            <tr>
+                                <th style="text-align: center; vertical-align: middle;">Text</th>
+                                <th style="vertical-align: middle;">The Secret Service believed that it was very doubtful that any President would ride regularly in a vehicle with a fixed top, even though transparent.</th>
+                                <th style="vertical-align: middle;">The prisoner had nothing to deal with but wooden panels, and by dint of cutting and chopping he got both the lower panels out.</th>
+                                <th style="vertical-align: middle;">it is not possible to state with scientific certainty that a particular small group of fibers come from a certain piece of clothing.</th>
+                            </tr>
+                            <tr>
+                                <td class="text" style="text-align: center; vertical-align: middle;">
+                                    Ground-truth
+                                </td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech_gt_norm/wavs/LJ049-0022.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech_gt_norm/wavs/LJ016-0117.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech_gt_norm/wavs/LJ032-0164.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="text" style="text-align: center; vertical-align: middle;">
+                                    Pitch shift = -40 (Hz)
+                                </td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/synthesis/pitch_shift_-40/1.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/synthesis/pitch_shift_-40/3.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/synthesis/pitch_shift_-40/6.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="text" style="text-align: center; vertical-align: middle;">
+                                    Pitch shift = 0 (Hz)
+                                </td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/synthesis/pitch_shift_0/1.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/synthesis/pitch_shift_0/3.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/synthesis/pitch_shift_0/6.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="text" style="text-align: center; vertical-align: middle;">
+                                    Pitch shift = +40 (Hz) 
+                                </td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/synthesis/pitch_shift_40/1.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/synthesis/pitch_shift_40/3.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/synthesis/pitch_shift_40/6.wav"></audio></td>
+                            </tr>
+                            </tbody>
+
+
+                            
+                        </table>
+                    </div>
+
+                    <div class="text-left">
+                        <h3>Audio Samples with pitch control on zero-shot voice conversion</h3>
+                    </div>  
+                    
+                    <table class="table table-responsive align-content-center"
+                           style="background-color: whitesmoke; border-radius: 20px;"">
+                           <tbody>
+                            <tr>
+                                <th style="text-align: center; vertical-align: middle;">Text</th>
+                                <th style="vertical-align: middle;">The chapel was filled with a curious but callous congregation, who came to stare at the miserable people thus publicly exposed.</th>
+                                <th style="vertical-align: middle;">But this weekly pittance did not go far when the debtors' side was crowded, as it often was</th>
+                                <th style="vertical-align: middle;">In England about this time, an attempt was made (notably by Caslon, who started business in London as a type-founder in seventeen twenty)</th>
+                            </tr>
+                            <tr>
+                                <td class="text" style="text-align: center; vertical-align: middle;">
+                                    Ground-truth
+                                </td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech_gt_norm/wavs/LJ003-0218.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech_gt_norm/wavs/LJ002-0315.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech_gt_norm/wavs/LJ001-0077.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="text" style="text-align: center; vertical-align: middle;">
+                                    Pitch shift = -40 (Hz)
+                                </td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/conversion/pitch_shift_-40/74.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/conversion/pitch_shift_-40/21.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/conversion/pitch_shift_-40/57.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="text" style="text-align: center; vertical-align: middle;">
+                                    Pitch shift = 0 (Hz)
+                                </td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/conversion/pitch_shift_0/74.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/conversion/pitch_shift_0/21.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/conversion/pitch_shift_0/57.wav"></audio></td>
+                            </tr>
+                            <tr>
+                                <td class="text" style="text-align: center; vertical-align: middle;">
+                                    Pitch shift = +40 (Hz)
+                                </td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/conversion/pitch_shift_40/74.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/conversion/pitch_shift_40/21.wav"></audio></td>
+                                <td><audio controls preload="none"><source src="wavs/ljspeech/zios/conversion/pitch_shift_40/57.wav"></audio></td>
+                            </tr>
+                            </tbody>
+                    </table>
+
+               </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<div class="scroll-to-top d-lg-none position-fixed"><a class="js-scroll-trigger d-block text-center text-white rounded"
+                                                       href="#page-top"><i class="fa fa-chevron-up"></i></a></div>
+<!-- Bootstrap core JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+<script src="js/scripts.js"></script>
+<!-- Bootstrap slider JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"
+        integrity="sha512-f0VlzJbcEB6KiW8ZVtL+5HWPDyW1+nJEjguZ5IVnSQkvZbwBt2RfCBY0CBO1PsMAqxxrG4Di6TfsCPP3ZRwKpA=="
+        crossorigin="anonymous"></script>
+<!-- slider JS -->
+<script type="text/javascript"></script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<!-- slider JS -->
+<script type="text/javascript">
+    function zeroPad(nr, base) {
+        var len = (String(base).length - String(nr).length) + 1;
+        return len > 0 ? new Array(len).join('0') + nr : nr;
+    }
+
+    function audio_reload(id) {
+        intensity = zeroPad(Number($("#intensity"+id).val()) * 10, 10);
+
+        var img_name = "./assets/img/intensity/" + id + '/' + intensity + ".png";
+        var audio_name = "./audio/intensity/" + id + '/' + intensity + ".wav";
+
+        console.log(intensity)
+        // console.log(audio_name)
+
+        $('#img_src'+id).attr("src", img_name);
+        $('#audio_src'+id).attr("src", audio_name);
+
+        //console.log($('#audio_src').val());
+        //console.log($("#audio_panel"))
+        $('#audio_panel'+id)[0].load();
+
+    };
+    $(function () {
+
+        $('#intensity0').slider({
+            formatter: function (value) {
+                return value;
+            }
+        });
+
+//slider:ready slider:changed
+        // 슬라이더에서 선택한 값을 출력하는 부분
+        $('#intensity0').on("slide changed", function () {
+            audio_reload("0")
+        });
+        $('#intensity0').on("slide down", function () {
+            audio_reload("0")
+        });
+
+    });
+
+    $(function () {
+
+        $('#intensity1').slider({
+            formatter: function (value) {
+                return value;
+            }
+        });
+        $('#intensity1').on("slide changed", function () {
+            audio_reload("1")
+        });
+        $('#intensity1').on("slide down", function () {
+            audio_reload("1")
+        });
+
+    });
+
+
+    $(function () {
+
+        $('#intensity2').slider({
+            formatter: function (value) {
+                return value;
+            }
+        });
+        $('#intensity2').on("slide changed", function () {
+            audio_reload("2")
+        });
+        $('#intensity2').on("slide down", function () {
+            audio_reload("2")
+        });
+
+    });
+
+    $(function () {
+
+        $('#intensity3').slider({
+            formatter: function (value) {
+                return value;
+            }
+        });
+        $('#intensity3').on("slide changed", function () {
+            audio_reload("3")
+        });
+        $('#intensity3').on("slide down", function () {
+            audio_reload("3")
+        });
+
+    });
+</script>
+</body>
+</html>
